@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>NIMBY BINGO! The game that's sweeping your neighborhood meeting!</title>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <meta name="description" content="nimbingo, nimby bingo for Portland neighborhood association meetings">
+  <meta name="author" content="twitter @tedder42">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <link rel="icon" type="image/png" href="favicon.ico"> -->
+  <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="skeleton-plus.css">
+
+  <!-- site verification(s) -->
+  <meta name="google-site-verification" content="" />
+
+  <style type="text/css">
+  img.h100 { height: 10rem; max-width: auto }
+  img.h200 { height: 20rem; max-width: auto }
+  ul li { font-size: smaller; margin-top: 0.5rem; margin-bottom: 0; margin-left: 1.5rem }
+  a { text-decoration: none }
+  //div.row { margin-bottom: 1.5rem }
+  .bingocard { border: 0; display: table; border-collapse: collapse; }
+  .bingocard .bingorow { height: 14vw; display: row; background-color: #fff }
+  .bingocard .bingocell { display: table-cell; border: 0.4rem solid black; text-align: center; vertical-align: middle; width: 14vw; height: 14vw; padding: 0.4rem }
+  .bingocell h2 { font-weight: 600; }
+  .bingocell + .freesquare { background-color: #EEE; }
+  #row0 .bingocell { background-color: #DDD; }
+  input #newcard { color: #00f; }
+  .newcard { vertical-align: bottom; }
+  .newcard > #newcard { }
+  </style>
+  <script type="text/javascript">
+
+var text = [
+'I don’t know anyone who…',
+'Nobody rides transit anyhow',
+'The newcomers don’t have Portland values',
+'It’s impossible to live in THIS neighborhood without a car',
+'That’s only for tourists',
+'Back when people knew their neighbors',
+'Meeting goes at least 1 hour over',
+'“Think of the children”',
+'“Neighborhood Character”',
+'Suggestion to put it in Gateway instead',
+'“Urban canopy”',
+'“I need my car”',
+'Density',
+'Someone scoffs loudly or storms out',
+'“I’ve lived in this neighborhood for (> 20 years)”',
+'Someone starts yelling',
+'“Bungalows”',
+'“Isn’t the right place to build affordable housing”',
+'Biketown',
+'Portland is getting too big',
+'Has anyone researched this?',
+'Someone starts crying',
+'Construction noise/ dust/ toxins',
+'Thinly veiled reference to age, millennials',
+'The new construction is unattractive',
+'Someone complains about renters',
+'Citing Nextdoor as a reputable source',
+'“I was never notified”',
+'Someone complains about the homeless',
+'Things are changing too fast',
+];
+
+function generateCard() {
+  //$("#msgid").html("This is Hello World by JQuery");
+  var ourlist = text.slice(); // slice copies array
+  //console.log("---", $(ourlist).length);
+  $(".bingocell").each(function() {
+    if ( $.inArray('bingohead', $(this).attr('class').split(' ')) == -1
+     &&  $.inArray('freesquare', $(this).attr('class').split(' ')) == -1) {
+      //console.log($(this).attr('class'));
+      var i = Math.floor(Math.random()*ourlist.length);
+      var itext = ourlist.splice(i, 1);
+      //console.log(i, $(ourlist).length, itext);
+      $(this).html(itext);
+    }
+  });
+}
+
+$(document).ready(generateCard);
+
+  </script>
+</head>
+<body>
+<div class="container">
+ <div class="row" style="margin-bottom: 2em">
+  <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> and <a href="https://twitter.com/tedder42">tedder</a> for this.</div>
+  <div class="two columns newcard"><input id="newcard" type="button" value="generate new card" onClick="generateCard()"></div>
+ </div> <!-- row -->
+ <div class="row">
+  <div class="twelve columns columns-sm bingocard">
+ 
+ <div class="bingorow" id="row0">
+  <div class="bingocell bingohead"><h2>N</h2></div>
+  <div class="bingocell bingohead"><h2>I</h2></div>
+  <div class="bingocell bingohead"><h2>M</h2></div>
+  <div class="bingocell bingohead"><h2>B</h2></div>
+  <div class="bingocell bingohead"><h2>Y</h2></div>
+ </div>
+ <div class="bingorow" id="row1">
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+ </div>
+ <div class="bingorow" id="row2">
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+ </div>
+ <div class="bingorow" id="row3">
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell freesquare"><b>PARKING</b><br />(free space)</div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+ </div>
+ <div class="bingorow" id="row4">
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+ </div>
+ <div class="bingorow" id="row5">
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+  <div class="bingocell"></div>
+ </div>
+
+ </div></div> <!-- actual cell/row -->
+ <div class="row">
+  <div class="twelve columns">&nbsp;</div>
+ </div> <!-- row -->
+</div>
+</body>
+</html>
+
