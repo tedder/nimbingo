@@ -35,6 +35,7 @@
   input #newcard { color: #00f; }
   .newcard { vertical-align: bottom; }
   .newcard > #newcard { }
+  .daub { background-color:#ff6666 !important; -webkit-border-radius:100%; -moz-border-radius:100%; border-radius:100%; border:40% solid transparent; }
   span { font-size: 1.3rem; }
   </style>
   <script type="text/javascript">
@@ -80,8 +81,15 @@ function dump_phrases() {
   $('#phraselist').replaceWith(txt);
 }
 
+function loadDauber(){
+  $('td.bingocell').click(function(){
+    $(this).toggleClass('daub');
+  });
+}
+
 function init() {
   generateCard();
+  loadDauber();
   $("input[name=city]").val('Portland');
   $('input[name=city]').click(function() {
     $(this).val('');
