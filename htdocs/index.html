@@ -135,17 +135,15 @@ function generateCard() {
   });
 }
 
-function dump_phrases(_this) {
-  var phrases = '<br /><br /><p><b>Please read through the following phrases before submitting new ones, then <a href="https://twitter.com/tedder42">hit tedder up on twitter</a> with your generic or city-specific phrases.</b></p><pre>' + text.slice().join(',\n');
+function dump_phrases() {
+  var phrases = '<br /><br /><p><b>please read through the following phrases before submitting new ones</b>, then <a href="https://twitter.com/tedder42">hit tedder up on twitter</a> with your generic or city-specific phrases. the nerds can also <a href="https://github.com/tedder/nimbingo/">fork and submit a pull request</a>.</p><pre>' + text.slice().join(',\n');
   $.each(locals, function(i,j) {
-    phrases += '\n\n** ' + i + '\n  ' + j.join(',\n  ') + '\n';
+    phrases += '\n\n** ' + i + '\n  ' + j.join(',\n  ');
     console.log(i,j);
   });
-  //locallist = locals[chosen_city_normalized].slice(); // again, copy
+
   phrases += '<\/pre>';
   $('#phraselist').replaceWith(phrases);
-    //alert('yo');
-  //$('#phraselist').innerHTML = 'zz';
 }
 
 function init() {
@@ -154,12 +152,9 @@ function init() {
   $('input[name=city]').click(function() {
     $(this).val('');
   });
-  $('#phraseclick').click(function() {
-    dump_phrases(this);
-  });
+  $('#phraseclick').click(dump_phrases);
 }
 
-//$(document).ready(generateCard);
 $(document).ready(init);
 
   </script>
