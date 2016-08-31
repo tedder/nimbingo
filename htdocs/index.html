@@ -38,17 +38,29 @@
   </style>
   <script type="text/javascript">
 
+var locals = {
+  'portland': [
+'Suggestion to put it in Gateway instead',
+'becoming California',
+'“Bungalows”',
+'Biketown',
+  ],
+  'sanfrancisco': [
+'Mission District',
+'Suggestion to put it in SOMA instead',
+  ]
+};
+
 var text = [
 'I don’t know anyone who…',
 'Nobody rides transit anyhow',
-'The newcomers don’t have Portland values',
+'The newcomers don’t have $CITY values',
 'Can\'t live in THIS neighborhood without a car',
 'That’s only for tourists',
 'Back when people knew their neighbors',
 'Meeting goes at least 1 hour over',
 '“Think of the children”',
 '“Neighborhood Character”',
-'Suggestion to put it in Gateway instead',
 '“Urban canopy”',
 '“I need my car”',
 'Density',
@@ -58,20 +70,22 @@ var text = [
 'hipsters',
 'condos',
 'gentrification',
+'too big/ out of scale',
+'only for the rich/ techies',
+'100% of units should be affordable',
+'wind tunnels',
+'too much for our infrastructure (eg water/sewer)',
 'it will block view/ sun',
 'skinny houses',
 'backdoor rezoning',
-'becoming California',
 'Godwin\'s Law',
 'we\'re not (city)',
 'renters with several cars',
 'Someone starts yelling',
 'literal mention of their backyard',
 'manhattanization',
-'“Bungalows”',
 '“Isn’t the right place to build affordable housing”',
-'Biketown',
-'Portland is getting too big',
+'$CITY is getting too big',
 'Has anyone researched this?',
 'Someone starts crying',
 'Construction noise/ dust/ toxins',
@@ -97,28 +111,63 @@ var text = [
 function generateCard() {
   //$("#msgid").html("This is Hello World by JQuery");
   var ourlist = text.slice(); // slice copies array
+  var chosen_city = $("input[name=city]").val() || 'Portland';
+  var chosen_city_normalized = chosen_city.toLowerCase().replace(/\s+/g, '');
+  console.log("city: ", chosen_city, chosen_city_normalized);
+  if (locals[chosen_city_normalized]) {
+    locallist = locals[chosen_city_normalized].slice(); // again, copy
+    ourlist = $.merge(ourlist, locallist);
+    //console.log(ourlist);
+  }
+
   //console.log("---", $(ourlist).length);
   $(".bingocell").each(function() {
     if ( $.inArray('bingohead', $(this).attr('class').split(' ')) == -1
      &&  $.inArray('freesquare', $(this).attr('class').split(' ')) == -1) {
       //console.log($(this).attr('class'));
       var i = Math.floor(Math.random()*ourlist.length);
-      var itext = ourlist.splice(i, 1);
+      var itext = ourlist.splice(i, 1)[0];
       //console.log(i, $(ourlist).length, itext);
-      $(this).html(itext);
+      //console.log("it", itext);
+      $(this).html(itext.replace('$CITY', chosen_city));
     }
   });
 }
 
-$(document).ready(generateCard);
+function dump_phrases(_this) {
+  //var phrases = ','.join
+  //$('#phraselist').replaceWith('yy');
+    //alert('yo');
+  //$('#phraselist').innerHTML = 'zz';
+}
+
+function init() {
+  generateCard();
+  $("input[name=city]").val('Portland');
+  $('input[name=city]').click(function() {
+    $(this).val('');
+  });
+  $('#phraseclick').click(function() {
+    dump_phrases(this);
+  });
+}
+
+//$(document).ready(generateCard);
+$(document).ready(init);
 
   </script>
 </head>
 <body>
 <div class="container">
  <div class="row" style="margin-bottom: 2em">
-  <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> and <a href="https://twitter.com/tedder42">tedder</a> for this.</div>
-  <div class="two columns newcard"><input id="newcard" type="button" value="generate new card" onClick="generateCard()"></div>
+  <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> and <a href="https://twitter.com/tedder42">tedder</a> for this; contact <a href="https://twitter.com/tedder42">tedder</a> with new phrase suggestions. <span id="phraselist"><a id="phraseclick">(see the list before you suggest something new)</a></span></div>
+  <div class="two columns newcard">
+<input list="cities" name="city">
+<datalist id="cities">
+  <option value="Portland">
+  <option value="San Francisco">
+</datalist>
+<input id="newcard" type="button" value="generate new card" onClick="generateCard()"></div>
  </div> <!-- row -->
  <div class="row">
   <div class="twelve columns columns-sm bingocard">
