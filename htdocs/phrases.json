@@ -25,11 +25,11 @@
     ]
   },
   "generics": [
-    "I don’t know anyone who…",
+    "I don\u2019t know anyone who…",
     "Nobody rides transit anyhow",
-    "The newcomers don’t have $CITY values",
-    "Can't live in THIS neighborhood without a car",
-    "That’s only for tourists",
+    "The newcomers don\u2019t have $CITY values",
+    "Can\u2019t live in THIS neighborhood without a car",
+    "That\u2019s only for tourists",
     "Back when people knew their neighbors",
     "Meeting goes at least 1 hour over",
     "\"Think of the children\"",
@@ -38,7 +38,7 @@
     "\"I need my car\"",
     "Density",
     "Someone scoffs loudly or storms out",
-    "\"I’ve lived in this neighborhood for (> 20 years)\"",
+    "\"I\u2019ve lived in this neighborhood for (> 20 years)\"",
     "those neoliberals",
     "hipsters",
     "condos",
@@ -51,13 +51,13 @@
     "it will block view/\u200Bsun",
     "skinny houses",
     "backdoor rezoning",
-    "Godwin's Law",
-    "we're not (city)",
+    "Godwin\u2019s Law",
+    "we\u2019re not (city)",
     "renters with several cars",
     "Someone starts yelling",
     "literal mention of their backyard",
     "manhattanization",
-    "\"Isn’t the right place to build affordable housing\"",
+    "\"Isn\u2019t the right place to build affordable housing\"",
     "$CITY is getting too big",
     "Has anyone researched this?",
     "Someone starts crying",
@@ -69,9 +69,9 @@
     "Non-local property developers/\u200Bowners",
     "Greedy developers",
     "Overcrowded schools",
-    "Families can't live in apartments",
+    "Families can\u2019t live in apartments",
     "Not everyone can bike",
-    "I don't have the time to take the bus",
+    "I don\u2019t have the time to take the bus",
     "Airbnb",
     "Losing our architectural history",
     "Someone complains about renters",
@@ -82,6 +82,6 @@
   ],
   "_test": [
     "you should ignore any other data in this file.",
-    "here's a test of a unicode char: \u200B"
+    "here\u2019s a test of a unicode char: \u200B"
   ]
 }
