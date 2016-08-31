@@ -19,26 +19,16 @@
       "not enough green space",
       "someone flew in from L.A. to speak"
     ],
-	"richmond": [
-	  "Sixth Street Marketplace",
-	  "\"Why can\u2019t we spend this on schools\"",
-	  "adaptive reuse",
-	  "\"Wall of buses\"",
-	  "bring back the streetcars",
-	  "\"Tacky\"",
-	  "that damn training camp",
-	  "disgraced ex-elected official at the podium",
-	  "\"I never go downtown\"",
-	  "Attempt to divine Maggie Walker\u2019s wishes",
-	  "\"Thugs\"",
-	  "meals tax",
-	  "\"Historic Fabric\"",
-	  "any mention of a stadium",
-	  "\"Capital of the Confederacy\"",
-	  "suggesting that ridesharing has made buses obsolete",
-	  "viewshed",
-	  "name drops a cousin who works for the city"
-	],
+  	"richmond": [
+  	  "Sixth Street Marketplace",
+  	  "\"Wall of buses\"",
+  	  "that damn training camp",
+  	  "Attempt to divine Maggie Walker\u2019s wishes",
+  	  "meals tax",
+  	  "\"Capital of the Confederacy\"",
+  	  "viewshed",
+  	  "name drops a cousin who works for the city"
+  	],
     "sanfrancisco": [
       "Mission District",
       "Suggestion to put it in SOMA instead"
@@ -104,7 +94,17 @@
     "cookie-cutter",
     "suburban-style",
     "corrupt politicians",
-	"\"We need a new study\""
+	  "\"We need a new study\"",
+   "\"Why can\u2019t we spend this on schools\"",
+   "adaptive reuse",
+   "bring back the streetcars",
+   "\"tacky\"",
+   "disgraced ex-elected official at the podium",
+   "\"I never go downtown\"",
+   "\"thugs\"",
+   "\"historic fabric\"",
+   "any mention of a stadium",
+   "suggesting that ridesharing has made buses obsolete"
 
   ],
   "_test": [
