@@ -39,84 +39,18 @@
   </style>
   <script type="text/javascript">
 
-var locals = {
-  'portland': [
-'Suggestion to put it in Gateway instead',
-'becoming California',
-'“Bungalows”',
-'Biketown',
-  ],
-  'sanfrancisco': [
-'Mission District',
-'Suggestion to put it in SOMA instead',
-  ]
-};
+var phrases = //__PHRASES__
 
-var text = [
-'I don’t know anyone who…',
-'Nobody rides transit anyhow',
-'The newcomers don’t have $CITY values',
-'Can\'t live in THIS neighborhood without a car',
-'That’s only for tourists',
-'Back when people knew their neighbors',
-'Meeting goes at least 1 hour over',
-'“Think of the children”',
-'“Neighborhood Character”',
-'“Urban canopy”',
-'“I need my car”',
-'Density',
-'Someone scoffs loudly or storms out',
-'“I’ve lived in this neighborhood for (> 20 years)”',
-'those neoliberals',
-'hipsters',
-'condos',
-'gentrification',
-'too big/ out of scale',
-'only for the rich/ techies',
-'100% of units should be affordable',
-'wind tunnels',
-'too much for our infrastructure (eg water/sewer)',
-'it will block view/ sun',
-'skinny houses',
-'backdoor rezoning',
-'Godwin\'s Law',
-'we\'re not (city)',
-'renters with several cars',
-'Someone starts yelling',
-'literal mention of their backyard',
-'manhattanization',
-'“Isn’t the right place to build affordable housing”',
-'$CITY is getting too big',
-'Has anyone researched this?',
-'Someone starts crying',
-'Construction noise/ dust/ toxins',
-'Thinly veiled reference to age, millennials',
-'The new construction is unattractive',
-'New construction uses cheap materials',
-'We already have too much traffic',
-'Non-local property developers/ owners',
-'Greedy developers',
-'Overcrowded schools',
-'Families can\'t live in apartments',
-'Not everyone can bike',
-'I don\'t have the time to take the bus',
-'Airbnb',
-'Losing our architectural history',
-'Someone complains about renters',
-'Citing Nextdoor as a reputable source',
-'“I was never notified”',
-'Someone complains about the homeless',
-'Things are changing too fast',
-];
+; // close the magically-inserted JSON
 
 function generateCard() {
   //$("#msgid").html("This is Hello World by JQuery");
-  var ourlist = text.slice(); // slice copies array
+  var ourlist = phrases['generics'].slice(); // slice copies array
   var chosen_city = $("input[name=city]").val() || 'Portland';
   var chosen_city_normalized = chosen_city.toLowerCase().replace(/\s+/g, '');
   console.log("city: ", chosen_city, chosen_city_normalized);
-  if (locals[chosen_city_normalized]) {
-    locallist = locals[chosen_city_normalized].slice(); // again, copy
+  if (phrases['locals'][chosen_city_normalized]) {
+    locallist = phrases['locals'][chosen_city_normalized].slice(); // again, copy
     ourlist = $.merge(ourlist, locallist);
     //console.log(ourlist);
   }
@@ -136,14 +70,14 @@ function generateCard() {
 }
 
 function dump_phrases() {
-  var phrases = '<br /><br /><p><b>please read through the following phrases before submitting new ones</b>, then <a href="https://twitter.com/tedder42">hit tedder up on twitter</a> with your generic or city-specific phrases. the nerds can also <a href="https://github.com/tedder/nimbingo/">fork and submit a pull request</a>.</p><pre>' + text.slice().join(',\n');
-  $.each(locals, function(i,j) {
-    phrases += '\n\n** ' + i + '\n  ' + j.join(',\n  ');
+  var txt = '<br /><br /><p><b>please read through the following phrases before submitting new ones</b>, then <a href="https://twitter.com/tedder42">hit tedder up on twitter</a> with your generic or city-specific phrases. the nerds can also <a href="https://github.com/tedder/nimbingo/">fork and submit a pull request</a>.</p><pre>' + phrases['generics'].slice().join(',\n');
+  $.each(phrases['locals'], function(i,j) {
+    txt += '\n\n** ' + i + '\n  ' + j.join(',\n  ');
     console.log(i,j);
   });
 
-  phrases += '<\/pre>';
-  $('#phraselist').replaceWith(phrases);
+  txt += '<\/pre>';
+  $('#phraselist').replaceWith(txt);
 }
 
 function init() {
