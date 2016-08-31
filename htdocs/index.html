@@ -35,6 +35,7 @@
   input #newcard { color: #00f; }
   .newcard { vertical-align: bottom; }
   .newcard > #newcard { }
+  span { font-size: 1.3rem; }
   </style>
   <script type="text/javascript">
 
@@ -135,8 +136,14 @@ function generateCard() {
 }
 
 function dump_phrases(_this) {
-  //var phrases = ','.join
-  //$('#phraselist').replaceWith('yy');
+  var phrases = '<br /><br /><p><b>Please read through the following phrases before submitting new ones, then <a href="https://twitter.com/tedder42">hit tedder up on twitter</a> with your generic or city-specific phrases.</b></p><pre>' + text.slice().join(',\n');
+  $.each(locals, function(i,j) {
+    phrases += '\n\n** ' + i + '\n  ' + j.join(',\n  ') + '\n';
+    console.log(i,j);
+  });
+  //locallist = locals[chosen_city_normalized].slice(); // again, copy
+  phrases += '<\/pre>';
+  $('#phraselist').replaceWith(phrases);
     //alert('yo');
   //$('#phraselist').innerHTML = 'zz';
 }
@@ -160,7 +167,7 @@ $(document).ready(init);
 <body>
 <div class="container">
  <div class="row" style="margin-bottom: 2em">
-  <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> and <a href="https://twitter.com/tedder42">tedder</a> for this; contact <a href="https://twitter.com/tedder42">tedder</a> with new phrase suggestions. <span id="phraselist"><a id="phraseclick">(see the list before you suggest something new)</a></span></div>
+  <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> and <a href="https://twitter.com/tedder42">tedder</a> for this; <span id="phraselist"><a id="phraseclick">suggest new phrases/cities</a>.</span></div>
   <div class="two columns newcard">
 <input list="cities" name="city">
 <datalist id="cities">
