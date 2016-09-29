@@ -36,7 +36,27 @@
   .newcard { vertical-align: bottom; }
   .newcard > #newcard { }
   .daub { background-color:#ff6666 !important; -webkit-border-radius:100%; -moz-border-radius:100%; border-radius:100%; border:40% solid transparent; }
+  .addcards {font-size:0.75rem}
   span { font-size: 1.3rem; }
+  </style>
+  <style type="text/css" media="print">
+    @page {
+      size: 216mm 279mm;
+      margin: 15mm;
+      margin-right: 15mm;
+    }
+    table.bingocard
+    {
+      table-layout: fixed !important;
+      page-break-before: always !important;
+      page-break-inside: never !important;
+      font-size:14pt;
+    }
+    div { float: none !important; position: static !important; display: inline; 
+          box-sizing: content-box !important;
+    }
+    .bingocard .bingorow { height: 25mm; background-color: #fff }
+    .bingocard .bingocell { border: 1mm solid black; text-align: center; vertical-align: middle; width: 25mm; height: 25mm; padding: 1mm }
   </style>
   <script type="text/javascript">
 
@@ -57,7 +77,7 @@ function generateCard() {
   }
 
   //console.log("---", $(ourlist).length);
-  $(".bingocell").each(function() {
+  $(".bingocell").not(".populated").each(function() {
     if ( $.inArray('bingohead', $(this).attr('class').split(' ')) == -1
      &&  $.inArray('freesquare', $(this).attr('class').split(' ')) == -1) {
       //console.log($(this).attr('class'));
@@ -66,6 +86,7 @@ function generateCard() {
       //console.log(i, $(ourlist).length, itext);
       //console.log("it", itext);
       $(this).html(itext.replace('$CITY', chosen_city));
+      $(this).addClass('populated')
     }
   });
 }
@@ -82,13 +103,29 @@ function dump_phrases() {
 }
 
 function loadDauber(){
+  $('td.bingocell').off('click');
   $('td.bingocell').click(function(){
     $(this).toggleClass('daub');
   });
 }
 
+function loadCloner(contents){
+  $('.add_cards').click(function(){
+    cloneCard(contents,$(this).attr('data-card_count'));
+  });
+}
+function cloneCard(contents,count){
+  for(var i=0; i < count; i++){
+    $('#main_container').append(contents.clone());
+    generateCard();
+  }
+  loadDauber();
+}
+
 function init() {
+  var blankCard = $('table.bingocard').clone()
   generateCard();
+  loadCloner(blankCard);
   loadDauber();
   $("input[name=city]").val('Portland');
   $('input[name=city]').click(function() {
@@ -102,7 +139,7 @@ $(document).ready(init);
   </script>
 </head>
 <body>
-<div class="container">
+<div class="container" id="main_container">
  <div class="row" style="margin-bottom: 2em">
   <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> and <a href="https://twitter.com/tedder42">tedder</a> for this; <span id="phraselist"><a id="phraseclick">suggest new phrases/cities</a>.</span></div>
   <div class="two columns newcard">
@@ -113,6 +150,13 @@ $(document).ready(init);
   <option value="Richmond">
   <option value="San Francisco">
 </datalist>
+<div class="addcards">
+  Add:
+  <a href="#" data-remote="true" class="add_cards" data-card_count="1">1</a>
+  <a href="#" data-remote="true" class="add_cards" data-card_count="10">10</a>
+  <a href="#" data-remote="true" class="add_cards" data-card_count="100">100</a>
+  <a href="#" data-remote="true" class="add_cards" data-card_count="1000">1000</a>
+</div>
 <input id="newcard" type="button" value="generate new card" onClick="generateCard()"></div>
  </div> <!-- row -->
  <div class="row">
