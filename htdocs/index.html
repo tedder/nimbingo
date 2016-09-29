@@ -128,7 +128,7 @@ function init() {
   loadCloner(blankCard);
   loadDauber();
   $("input[name=city]").val('Portland');
-  $('input[name=city]').click(function() {
+  $('input[name=city]').focusin(function() {
     $(this).val('');
   });
   $('#phraseclick').click(dump_phrases);
