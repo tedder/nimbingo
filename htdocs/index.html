@@ -73,21 +73,27 @@ function generateCard() {
   if (phrases['locals'][chosen_city_normalized]) {
     locallist = phrases['locals'][chosen_city_normalized].slice(); // again, copy
     ourlist = $.merge(ourlist, locallist);
-    //console.log(ourlist);
+    console.log(ourlist);
   }
 
-  //console.log("---", $(ourlist).length);
-  $(".bingocell").not(".populated").each(function() {
-    if ( $.inArray('bingohead', $(this).attr('class').split(' ')) == -1
-     &&  $.inArray('freesquare', $(this).attr('class').split(' ')) == -1) {
-      //console.log($(this).attr('class'));
-      var i = Math.floor(Math.random()*ourlist.length);
-      var itext = ourlist.splice(i, 1)[0];
-      //console.log(i, $(ourlist).length, itext);
-      //console.log("it", itext);
-      $(this).html(itext.replace('$CITY', chosen_city));
-      $(this).addClass('populated')
-    }
+  console.log("---", $(ourlist).length);
+  //$(".bingocell").not(".populated").each(function() {
+  $(".bingocard").each(function() {
+
+    // TODO syntax of this line is wrong
+    $(this).(".bingocell").each(function() {
+      if ( $.inArray('bingohead', $(this).attr('class').split(' ')) == -1
+       &&  $.inArray('freesquare', $(this).attr('class').split(' ')) == -1) {
+
+        console.log($(this).attr('class'));
+        var i = Math.floor(Math.random()*ourlist.length);
+        var itext = ourlist.splice(i, 1)[0];
+        console.log(i, $(ourlist).length, itext);
+        console.log("it", itext);
+        $(this).html(itext.replace('$CITY', chosen_city));
+        $(this).addClass('populated')
+      }
+    });
   });
 }
 
@@ -141,7 +147,7 @@ $(document).ready(init);
 <body>
 <div class="container" id="main_container">
  <div class="row" style="margin-bottom: 2em">
-  <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> and <a href="https://twitter.com/tedder42">tedder</a> for this; <span id="phraselist"><a id="phraseclick">suggest new phrases/cities</a>.</span></div>
+  <div class="ten columns"><h2 style="margin: 0; padding: 0">nimbingo, nimby bingo!</h2>the fun game you can play at your neighborhood meeting. fill it in when you hear the term, or use them in conversation until you get bingo. blame <a href="https://twitter.com/adamherstein">adam</a> <a href="https://twitter.com/alankesslr">alan</a> and <a href="https://twitter.com/tedder42">tedder</a> for this; <span id="phraselist"><a id="phraseclick">suggest new phrases/cities</a>.</span></div>
   <div class="two columns newcard">
 <input list="cities" name="city">
 <datalist id="cities">
@@ -211,7 +217,7 @@ $(document).ready(init);
 
  </div></div> <!-- actual cell/row -->
  <div class="row">
-  <div class="twelve columns">&nbsp;<div class="text-right"><small>v1.1</small></div></div>
+  <div class="twelve columns">&nbsp;<div class="text-right"><small>v1.1a</small></div></div>
  </div> <!-- row -->
 </div>
 </body>
